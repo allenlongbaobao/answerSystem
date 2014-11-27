@@ -6,7 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
-var answer= require('./routes/answer');
+var answer= require('./routes/answers');
 var http = require('http');
 var path = require('path');
 var requirejs = require('requirejs');
@@ -34,12 +34,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/start', answer.start);
 
-//post request
+//need post request
 app.post('/login');
+app.post('/changeSingleQuestion');
+app.post('/changeAllQuestions');
+
+//needn't post request
 app.post('changeImg');
 app.post('changeTitle');
-app.post('changeSingleQuestion');
-app.post('changeAllQuestions');
 app.post('changeCount');
 
 http.createServer(app).listen(app.get('port'), function(){
